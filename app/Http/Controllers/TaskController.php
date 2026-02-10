@@ -35,7 +35,7 @@ class TaskController extends Controller
         ]);
      
         Task::create($request->all()); //Saves one line in the DB
-        return redirect()->back()->with('success', 'Task added');
+        return redirect('/tasks')->with('success', 'Task added');
     }
 
     /**
