@@ -62,6 +62,15 @@ class TaskController extends Controller
         //
     }
 
+    public function toggle(Task $task){
+        //Invert the current value (true becomes false, false becomes true)
+        $task->update([
+            'is_completed' => !$task->is_completed
+        ]);
+        //The user is redirected to the previous page with a success message
+        return back()->with('success','Task status updated!');
+    }
+
     /**
      * Remove the specified resource from storage.
      */

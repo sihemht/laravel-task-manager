@@ -8,3 +8,5 @@ Route::resource('tasks', TaskController::class);
 Route::get('/', function () {
     return redirect()->route('tasks.index');
 });
+
+Route::patch('/tasks/{task}/toggle', [TaskController::class, 'toggle'])->name('tasks.toggle');
