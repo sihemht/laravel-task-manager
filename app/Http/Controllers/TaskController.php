@@ -49,17 +49,25 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Task $task)
     {
-        //
+        return view('tasks.edit', compact('task'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request,Task $task)
     {
-        //
+       
+        $request->validate([
+            'title' => 'required|string|min:3|max:255',
+        ]);
+
+        $task->update([
+            'title' => $request->title,
+        ]);
+        return redirect()->route('tasks.index')->with('success', 'Task modified successfully!');
     }
 
     public function toggle(Task $task){

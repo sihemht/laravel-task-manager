@@ -28,7 +28,7 @@ it('can create a new task', function () {
     $this->assertDatabaseHas('tasks', $taskData);
 });
 
-it('can toggle a task completion status', function(){
+it('can toggle a task completion status', function () {
     $task = \App\Models\Task::create(['title' => 'Toggle test task', 'is_completed' => false]);
 
     //1. Create an unfinished task
@@ -42,3 +42,28 @@ it('can toggle a task completion status', function(){
         'is_completed' => true
     ]);
 });
+
+it("can update a task title", function () {
+    $task = \App\Models\Task::create(['title' => 'Old title']);
+
+    $response = $this->put(route('tasks.update', $task), [
+        'title' => 'New title'
+    ]);
+
+    $response->assertRedirect(route('tasks.index'));
+
+    $this->assertDatabaseHas('tasks', [
+        'id' => $task->id,
+        'title' => 'New title'
+    ]);
+});
+
+it('fails to update a task with a title too short', function () {
+    $task = \App\Models\Task::create(['title' => 'Valid title']);
+
+    $response = $this->put(route('tasks.update', $task), [
+        'title' => 'az'
+    ]);
+    $response->assertSessionHasErrors(['title']);
+});
+

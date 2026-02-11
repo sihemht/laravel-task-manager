@@ -43,3 +43,12 @@ A clean and functional Task Manager (CRUD) built to demonstrate Laravel 11 funda
 
 5. **Start the developement server**
    🚀 Access the app at: <http://localhost:8000/tasks>
+
+## 🧪 Automated Testing
+
+This project uses **Pest**, a delightful PHP Testing Framework, to ensure stability and prevent regressions.
+
+To run the full test suite, use the following command:
+
+```bash
+./vendor/bin/pest

@@ -39,7 +39,7 @@
         <ul class="space-y-4">
             @forelse($tasks as $task)
             <li class="flex items-center justify-between bg-gray-50 p-4 rounded border">
-        
+
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                     <form action="{{ route('tasks.toggle', $task) }}" method="POST">
                         @csrf
@@ -53,6 +53,8 @@
                         {{ $task->title }}
                     </span>
                 </div>
+                <a class="text-yellow-500 hover:text-yellow-700 font-medium" href="{{ route('tasks.edit', $task) }}">Edit</a>
+
                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
