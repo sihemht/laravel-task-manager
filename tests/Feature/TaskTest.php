@@ -27,3 +27,18 @@ it('can create a new task', function () {
     $response->assertRedirect('/tasks');
     $this->assertDatabaseHas('tasks', $taskData);
 });
+
+it('can toggle a task completion status', function(){
+    $task = \App\Models\Task::create(['title' => 'Toggle test task', 'is_completed' => false]);
+
+    //1. Create an unfinished task
+    $response = $this->patch(route('tasks.toggle', $task));
+
+    //2. The toggle route is called
+    $response->assertRedirect();
+    //3. Check the redirection and the change in the database
+    $this->assertDatabaseHas('tasks', [
+        'id' => $task->id,
+        'is_completed' => true
+    ]);
+});
