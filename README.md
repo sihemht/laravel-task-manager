@@ -10,6 +10,18 @@ A clean and functional Task Manager (CRUD) built to demonstrate Laravel 11 funda
 - **UI/UX**: Responsive design built with Tailwind CSS.
 - **Security**: Protection against CSRF attacks and secure form handling.
 
+### 📡 API Endpoints
+
+| Method | Endpoint | Description |
+| :--- | :--- | :--- |
+| GET | `/api/tasks` | Get all tasks |
+| POST | `/api/tasks` | Create a new task |
+| GET | `/api/tasks/{id}` | Get specific task details |
+| PUT | `/api/tasks/{id}` | Update a task (title/status) |
+| DELETE | `/api/tasks/{id}`| Delete a task |
+
+*Note: All API requests should include the header `Accept: application/json`*
+
 ## 🛠️ Tech Stack
 
 - **Framework**: Laravel 11
